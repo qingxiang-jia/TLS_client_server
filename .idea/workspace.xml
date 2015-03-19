@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSClient.java" afterPath="$PROJECT_DIR$/src/a2/TLSClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSServer.java" afterPath="$PROJECT_DIR$/src/a2/TLSServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NS_assn2.iws" />
@@ -347,7 +345,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426786787289</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="preliminary server and client worked as expected">
+      <created>1426787307451</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1426787307451</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -399,7 +403,8 @@
     <MESSAGE value="wrote preliminary server from a demo" />
     <MESSAGE value="rewrote preliminary client" />
     <MESSAGE value="rewrote preliminary server" />
-    <option name="LAST_COMMIT_MESSAGE" value="rewrote preliminary server" />
+    <MESSAGE value="preliminary server and client worked as expected" />
+    <option name="LAST_COMMIT_MESSAGE" value="preliminary server and client worked as expected" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
