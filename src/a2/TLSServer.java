@@ -1,11 +1,11 @@
-package server;
+package a2;
 
 import javax.net.ssl.*;
 import java.io.*;
 import java.security.KeyStore;
 
 /**
- * TLSServer [port]
+ * a2.TLSServer [port]
  */
 public class TLSServer
 {
@@ -20,7 +20,7 @@ public class TLSServer
             SSLContext sc = SSLContext.getInstance("TLS");
             sc.init(kmf.getKeyManagers(), null, null);
             SSLServerSocketFactory ssf = sc.getServerSocketFactory();
-            SSLServerSocket serverSocket = (SSLServerSocket) ssf.createServerSocket(8888);
+            SSLServerSocket serverSocket = (SSLServerSocket) ssf.createServerSocket(port);
             printServerSocketInfo(serverSocket);
             SSLSocket socket = (SSLSocket) serverSocket.accept();
             printSocketInfo(socket);
@@ -52,6 +52,12 @@ public class TLSServer
         }
     }
 
+    public static void main(String[] args)
+    {
+        TLSServer server = new TLSServer();
+        server.run(Integer.parseInt(args[0]));
+    }
+
     private static void printSocketInfo(SSLSocket s) {
         System.out.println("Socket class: "+s.getClass());
         System.out.println("   Remote address = "
@@ -62,7 +68,7 @@ public class TLSServer
         System.out.println("   Local address = "
                 +s.getLocalAddress().toString());
         System.out.println("   Local port = "+s.getLocalPort());
-        System.out.println("   Need client authentication = "
+        System.out.println("   Need a2.client authentication = "
                 +s.getNeedClientAuth());
         SSLSession ss = s.getSession();
         System.out.println("   Cipher suite = "+ss.getCipherSuite());
@@ -74,11 +80,11 @@ public class TLSServer
                 +s.getInetAddress().toString());
         System.out.println("   Socker port = "
                 +s.getLocalPort());
-        System.out.println("   Need client authentication = "
+        System.out.println("   Need a2.client authentication = "
                 +s.getNeedClientAuth());
-        System.out.println("   Want client authentication = "
+        System.out.println("   Want a2.client authentication = "
                 +s.getWantClientAuth());
-        System.out.println("   Use client mode = "
+        System.out.println("   Use a2.client mode = "
                 +s.getUseClientMode());
     }
 }
