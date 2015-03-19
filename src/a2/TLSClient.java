@@ -28,7 +28,7 @@ public class TLSClient
         ctrustKs.load(new FileInputStream(ctrustPath), ctrustPass.toCharArray());
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        kmf.init(cKs, cKsPass.toCharArray());
+        kmf.init(cKs, cKeyPass.toCharArray());
 
         TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         tmf.init(ctrustKs);

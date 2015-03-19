@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client_keystore.jks" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client_keystore.jsk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen_client_keystore.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen_crt_in_client_keystore.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen_crt_in_server_keystore.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen_server_keystore.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server_keystore.jks" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server_keystore.jsk" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/client/TLSClient.java" afterPath="$PROJECT_DIR$/src/a2/TLSClient.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/TLSServer.java" afterPath="$PROJECT_DIR$/src/a2/TLSServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSClient.java" afterPath="$PROJECT_DIR$/src/a2/TLSClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSServer.java" afterPath="$PROJECT_DIR$/src/a2/TLSServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NS_assn2.iws" />
@@ -40,9 +32,11 @@
       <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3202847" vertical-offset="0" max-vertical-offset="1170">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding />
+            <state vertical-scroll-proportion="0.35828024" vertical-offset="225" max-vertical-offset="1170">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,8 +44,8 @@
       <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
-              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1155">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,15 +64,16 @@
         <option value="$PROJECT_DIR$/src/client/TLSClient.java" />
         <option value="$PROJECT_DIR$/src/server/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/client/TLSClient.java" />
+        <option value="$PROJECT_DIR$/src/a2/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/TLSClient.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="13" />
-    <option name="y" value="361" />
+    <option name="x" value="-3" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="378" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -340,11 +335,23 @@
       <option name="project" value="LOCAL" />
       <updated>1426719303520</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="rewrote preliminary client">
+      <created>1426784657836</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1426784657836</updated>
+    </task>
+    <task id="LOCAL-00004" summary="rewrote preliminary server">
+      <created>1426786787289</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1426786787289</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="13" y="361" width="1280" height="378" extended-state="0" />
+    <frame x="-3" y="23" width="1280" height="725" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -358,6 +365,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -367,7 +375,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -390,7 +397,9 @@
     </option>
     <MESSAGE value="wrote preliminary client" />
     <MESSAGE value="wrote preliminary server from a demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrote preliminary server from a demo" />
+    <MESSAGE value="rewrote preliminary client" />
+    <MESSAGE value="rewrote preliminary server" />
+    <option name="LAST_COMMIT_MESSAGE" value="rewrote preliminary server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -403,7 +412,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -421,14 +432,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
-          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1155">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -437,9 +450,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3202847" vertical-offset="0" max-vertical-offset="1170">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
+        <state vertical-scroll-proportion="0.35828024" vertical-offset="225" max-vertical-offset="1170">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

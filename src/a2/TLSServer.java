@@ -12,7 +12,7 @@ public class TLSServer
     public void run(int port) throws Exception
     {
         String sKsPath = "/Users/lee/Dropbox/NS/assn2/programming/s.ks",
-                sKsPass = "Sstorepass",
+                sKsPass = "sstorepass",
                 sKeyPass = "skeypass",
                 strustPath = "/Users/lee/Dropbox/NS/assn2/programming/strust.ks",
                 strustPass = "struststorepass";
@@ -61,5 +61,11 @@ public class TLSServer
                 }
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception
+    {
+        TLSServer server = new TLSServer();
+        server.run(Integer.parseInt(args[0]));
     }
 }
