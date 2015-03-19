@@ -1,0 +1,3 @@
+#! /bin/sh
+javac a2/TLSClient.java
+java a2.TLSClient 127.0.0.1 8087

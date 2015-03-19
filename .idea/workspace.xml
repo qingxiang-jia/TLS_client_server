@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/c.cert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/c.ks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ctrust.ks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/s.cert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/s.ks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/strust.ks" />
     </list>
     <ignored path="NS_assn2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +35,8 @@
       <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1910828" vertical-offset="122" max-vertical-offset="1170">
-              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.78503186" vertical-offset="122" max-vertical-offset="1170">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,6 +118,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="programming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NS_assn2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="programming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -357,7 +376,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426787312739</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added keystore and certifications">
+      <created>1426791092292</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1426791092292</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -410,7 +435,8 @@
     <MESSAGE value="rewrote preliminary client" />
     <MESSAGE value="rewrote preliminary server" />
     <MESSAGE value="preliminary server and client worked as expected" />
-    <option name="LAST_COMMIT_MESSAGE" value="preliminary server and client worked as expected" />
+    <MESSAGE value="added keystore and certifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="added keystore and certifications" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -461,8 +487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1910828" vertical-offset="122" max-vertical-offset="1170">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.78503186" vertical-offset="122" max-vertical-offset="1170">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
