@@ -30,8 +30,8 @@
       <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35828024" vertical-offset="225" max-vertical-offset="1170">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state vertical-scroll-proportion="1.1910828" vertical-offset="122" max-vertical-offset="1170">
+              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -351,7 +351,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426787307451</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="preliminary server and client worked as expected">
+      <created>1426787312739</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1426787312739</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -455,8 +461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35828024" vertical-offset="225" max-vertical-offset="1170">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state vertical-scroll-proportion="1.1910828" vertical-offset="122" max-vertical-offset="1170">
+          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
