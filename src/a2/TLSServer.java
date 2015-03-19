@@ -9,82 +9,57 @@ import java.security.KeyStore;
  */
 public class TLSServer
 {
-    public void run(int port)
+    public void run(int port) throws Exception
     {
-        char[] passphrase = "coms4180pwd".toCharArray();
-        try {
-            KeyStore ks = KeyStore.getInstance("JKS");
-            ks.load(new FileInputStream("/Users/lee/Dropbox/NS/assn2/programming/client_keystore.jks"), passphrase);
-            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-            kmf.init(ks, passphrase);
-            SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(kmf.getKeyManagers(), null, null);
-            SSLServerSocketFactory ssf = sc.getServerSocketFactory();
-            SSLServerSocket serverSocket = (SSLServerSocket) ssf.createServerSocket(port);
-            printServerSocketInfo(serverSocket);
-            SSLSocket socket = (SSLSocket) serverSocket.accept();
-            printSocketInfo(socket);
-            BufferedWriter w = new BufferedWriter( new OutputStreamWriter( socket.getOutputStream()));
-            BufferedReader r = new BufferedReader( new InputStreamReader( socket.getInputStream()));
-            String m = "hello from server";
-            w.write(m, 0, m.length());
-            w.newLine();
-            w.flush();
-            while ((m=r.readLine())!= null) {
-                if (m.equals(".")) break;
-                char[] a = m.toCharArray();
-                int n = a.length;
-                for (int i=0; i<n/2; i++) {
-                    char t = a[i];
-                    a[i] = a[n-1-i];
-                    a[n-i-1] = t;
+        String sKsPath = "/Users/lee/Dropbox/NS/assn2/programming/s.ks",
+                sKsPass = "Sstorepass",
+                sKeyPass = "skeypass",
+                strustPath = "/Users/lee/Dropbox/NS/assn2/programming/strust.ks",
+                strustPass = "struststorepass";
+
+        KeyStore sKs = KeyStore.getInstance("JKS");
+        sKs.load(new FileInputStream(sKsPath), sKsPass.toCharArray());
+
+        KeyStore strustKs = KeyStore.getInstance("JKS");
+        strustKs.load(new FileInputStream(strustPath), strustPass.toCharArray());
+
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        kmf.init(sKs, sKeyPass.toCharArray());
+
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(strustKs);
+
+
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+
+        SSLServerSocketFactory sslServerSocketFactory = sslContext.getServerSocketFactory();
+        SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
+        sslServerSocket.setNeedClientAuth(true);
+
+        while (true)
+        {
+            SSLSocket socket = (SSLSocket) sslServerSocket.accept();
+            socket.startHandshake();
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+
+                writer.println("Welcome~, enter exit to leave.");
+                String s;
+                while ((s = reader.readLine()) != null && !s.trim().equalsIgnoreCase("exit")) {
+                    writer.println("Echo: " + s);
                 }
-                w.write(a,0,n);
-                w.newLine();
-                w.flush();
+                writer.println("Bye~");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            w.close();
-            r.close();
-            socket.close();
-            serverSocket.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args)
-    {
-        TLSServer server = new TLSServer();
-        server.run(Integer.parseInt(args[0]));
-    }
-
-    private static void printSocketInfo(SSLSocket s) {
-        System.out.println("Socket class: "+s.getClass());
-        System.out.println("   Remote address = "
-                +s.getInetAddress().toString());
-        System.out.println("   Remote port = "+s.getPort());
-        System.out.println("   Local socket address = "
-                +s.getLocalSocketAddress().toString());
-        System.out.println("   Local address = "
-                +s.getLocalAddress().toString());
-        System.out.println("   Local port = "+s.getLocalPort());
-        System.out.println("   Need a2.client authentication = "
-                +s.getNeedClientAuth());
-        SSLSession ss = s.getSession();
-        System.out.println("   Cipher suite = "+ss.getCipherSuite());
-        System.out.println("   Protocol = "+ss.getProtocol());
-    }
-    private static void printServerSocketInfo(SSLServerSocket s) {
-        System.out.println("Server socket class: "+s.getClass());
-        System.out.println("   Socker address = "
-                +s.getInetAddress().toString());
-        System.out.println("   Socker port = "
-                +s.getLocalPort());
-        System.out.println("   Need a2.client authentication = "
-                +s.getNeedClientAuth());
-        System.out.println("   Want a2.client authentication = "
-                +s.getWantClientAuth());
-        System.out.println("   Use a2.client mode = "
-                +s.getUseClientMode());
     }
 }
