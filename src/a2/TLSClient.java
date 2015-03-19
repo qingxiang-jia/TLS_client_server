@@ -1,12 +1,11 @@
 package a2;
 
-import javax.net.ssl.KeyManagerFactory;
+import a2.net.Auth;
+
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 import java.io.*;
 import java.net.Socket;
-import java.security.KeyStore;
 
 /**
  * a2.TLSClient [server ip] [server port]
@@ -21,21 +20,7 @@ public class TLSClient
                 ctrustPath = "/Users/lee/Dropbox/NS/assn2/programming/ctrust.ks",
                 ctrustPass = "ctruststorepass";
 
-        KeyStore cKs = KeyStore.getInstance("JKS");
-        cKs.load(new FileInputStream(cKsPath), cKsPass.toCharArray());
-
-        KeyStore ctrustKs = KeyStore.getInstance("JKS");
-        ctrustKs.load(new FileInputStream(ctrustPath), ctrustPass.toCharArray());
-
-        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        kmf.init(cKs, cKeyPass.toCharArray());
-
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        tmf.init(ctrustKs);
-
-
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+        SSLContext sslContext = Auth.getSSLContext("TLS", "JKS", cKsPath, cKsPass, cKeyPass, ctrustPath, ctrustPass);
 
         SSLSocketFactory socketFactory = sslContext.getSocketFactory();
         Socket socket = socketFactory.createSocket(sIP, sPort);

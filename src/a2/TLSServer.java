@@ -1,5 +1,7 @@
 package a2;
 
+import a2.net.Auth;
+
 import javax.net.ssl.*;
 import java.io.*;
 import java.security.KeyStore;
@@ -17,25 +19,11 @@ public class TLSServer
                 strustPath = "/Users/lee/Dropbox/NS/assn2/programming/strust.ks",
                 strustPass = "struststorepass";
 
-        KeyStore sKs = KeyStore.getInstance("JKS");
-        sKs.load(new FileInputStream(sKsPath), sKsPass.toCharArray());
-
-        KeyStore strustKs = KeyStore.getInstance("JKS");
-        strustKs.load(new FileInputStream(strustPath), strustPass.toCharArray());
-
-        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        kmf.init(sKs, sKeyPass.toCharArray());
-
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        tmf.init(strustKs);
-
-
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+        SSLContext sslContext = Auth.getSSLContext("TLS", "JKS", sKsPath, sKsPass, sKeyPass, strustPath, strustPass);
 
         SSLServerSocketFactory sslServerSocketFactory = sslContext.getServerSocketFactory();
         SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
-        sslServerSocket.setNeedClientAuth(true);
+        sslServerSocket.setNeedClientAuth(true); // mutual authentication
 
         while (true)
         {

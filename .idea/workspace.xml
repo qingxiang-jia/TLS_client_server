@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/c.cert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/c.ks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ctrust.ks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/s.cert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/s.ks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/strust.ks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/a2/net/Auth.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSClient.java" afterPath="$PROJECT_DIR$/src/a2/TLSClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSServer.java" afterPath="$PROJECT_DIR$/src/a2/TLSServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NS_assn2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78503186" vertical-offset="122" max-vertical-offset="1170">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="945">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,11 +42,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1155">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.3821656" vertical-offset="150" max-vertical-offset="975">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Auth.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/a2/net/Auth.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1455">
+              <caret line="85" column="53" selection-start-line="85" selection-start-column="53" selection-end-line="85" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,13 +77,14 @@
         <option value="$PROJECT_DIR$/src/client/TLSClient.java" />
         <option value="$PROJECT_DIR$/src/server/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/client/TLSClient.java" />
+        <option value="$PROJECT_DIR$/src/a2/net/Auth.java" />
         <option value="$PROJECT_DIR$/src/a2/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/TLSClient.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-3" />
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="725" />
@@ -150,6 +161,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="a2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NS_assn2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="programming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="a2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,11 +415,17 @@
       <option name="project" value="LOCAL" />
       <updated>1426791092292</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added testing scripts">
+      <created>1426791496315</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1426791496315</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="23" width="1280" height="725" extended-state="0" />
+    <frame x="1" y="23" width="1280" height="725" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -436,7 +475,8 @@
     <MESSAGE value="rewrote preliminary server" />
     <MESSAGE value="preliminary server and client worked as expected" />
     <MESSAGE value="added keystore and certifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="added keystore and certifications" />
+    <MESSAGE value="added testing scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="added testing scripts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -475,10 +515,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/rt.jar!/javax/net/ssl/SSLContext.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1155">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.34660032" vertical-offset="376" max-vertical-offset="1530">
+          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/a2/net/Auth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="827" max-vertical-offset="1455">
+          <caret line="85" column="53" selection-start-line="85" selection-start-column="53" selection-end-line="85" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -487,8 +535,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78503186" vertical-offset="122" max-vertical-offset="1170">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="945">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3821656" vertical-offset="150" max-vertical-offset="975">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
