@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/a2/net/Auth.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSClient.java" afterPath="$PROJECT_DIR$/src/a2/TLSClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/a2/TLSServer.java" afterPath="$PROJECT_DIR$/src/a2/TLSServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/testc" afterPath="$PROJECT_DIR$/src/testc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests" afterPath="$PROJECT_DIR$/src/tests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NS_assn2.iws" />
@@ -33,8 +34,8 @@
       <file leaf-file-name="TLSClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="945">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="467" max-vertical-offset="1095">
+              <caret line="63" column="120" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="120" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,8 +46,8 @@
       <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3821656" vertical-offset="150" max-vertical-offset="975">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.0031847134" vertical-offset="437" max-vertical-offset="1065">
+              <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,8 +79,8 @@
         <option value="$PROJECT_DIR$/src/server/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/client/TLSClient.java" />
         <option value="$PROJECT_DIR$/src/a2/net/Auth.java" />
-        <option value="$PROJECT_DIR$/src/a2/TLSServer.java" />
         <option value="$PROJECT_DIR$/src/a2/TLSClient.java" />
+        <option value="$PROJECT_DIR$/src/a2/TLSServer.java" />
       </list>
     </option>
   </component>
@@ -421,7 +422,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426791496315</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added two layers of abstraction so that mutual authentication is much easier">
+      <created>1426797046256</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1426797046256</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -476,7 +483,8 @@
     <MESSAGE value="preliminary server and client worked as expected" />
     <MESSAGE value="added keystore and certifications" />
     <MESSAGE value="added testing scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="added testing scripts" />
+    <MESSAGE value="added two layers of abstraction so that mutual authentication is much easier" />
+    <option name="LAST_COMMIT_MESSAGE" value="added two layers of abstraction so that mutual authentication is much easier" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -535,8 +543,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="945">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="467" max-vertical-offset="1095">
+          <caret line="63" column="120" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="120" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -545,8 +553,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/a2/TLSServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3821656" vertical-offset="150" max-vertical-offset="975">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.0031847134" vertical-offset="437" max-vertical-offset="1065">
+          <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

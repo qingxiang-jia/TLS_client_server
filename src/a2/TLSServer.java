@@ -4,21 +4,27 @@ import a2.net.Auth;
 
 import javax.net.ssl.*;
 import java.io.*;
-import java.security.KeyStore;
 
 /**
  * a2.TLSServer [port]
  */
 public class TLSServer
 {
-    public void run(int port) throws Exception
-    {
-        String sKsPath = "/Users/lee/Dropbox/NS/assn2/programming/s.ks",
-                sKsPass = "sstorepass",
-                sKeyPass = "skeypass",
-                strustPath = "/Users/lee/Dropbox/NS/assn2/programming/strust.ks",
-                strustPass = "struststorepass";
+    String sKsPath, sKsPass, sKeyPass, strustPath, strustPass;
+    int port;
 
+    public TLSServer(int port, String sKsPath, String sKsPass, String sKeyPass, String strustPath, String strustPass)
+    {
+        this.port = port;
+        this.sKsPath = sKsPath;
+        this.sKsPass = sKsPass;
+        this.sKeyPass = sKeyPass;
+        this.strustPath = strustPath;
+        this.strustPass = strustPass;
+    }
+
+    public void run() throws Exception
+    {
         SSLContext sslContext = Auth.getSSLContext("TLS", "JKS", sKsPath, sKsPass, sKeyPass, strustPath, strustPass);
 
         SSLServerSocketFactory sslServerSocketFactory = sslContext.getServerSocketFactory();
@@ -53,7 +59,7 @@ public class TLSServer
 
     public static void main(String[] args) throws Exception
     {
-        TLSServer server = new TLSServer();
-        server.run(Integer.parseInt(args[0]));
+        TLSServer server = new TLSServer(Integer.parseInt(args[0]), args[1], args[2], args[3], args[4], args[5]);
+        server.run();
     }
 }

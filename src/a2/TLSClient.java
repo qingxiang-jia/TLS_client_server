@@ -12,14 +12,24 @@ import java.net.Socket;
  */
 public class TLSClient
 {
-    public void run(String sIP, int sPort) throws Exception
-    {
-        String cKsPath = "/Users/lee/Dropbox/NS/assn2/programming/c.ks",
-                cKsPass = "cstorepass",
-                cKeyPass = "ckeypass",
-                ctrustPath = "/Users/lee/Dropbox/NS/assn2/programming/ctrust.ks",
-                ctrustPass = "ctruststorepass";
+    String cKsPath, cKsPass, cKeyPass, ctrustPath, ctrustPass;
+    String sIP;
+    int sPort;
 
+    public TLSClient(String sIP, int sPort,
+                     String cKsPath, String cKsPass, String cKeyPass, String ctrustPath, String ctrustPass)
+    {
+        this.sIP = sIP;
+        this.sPort = sPort;
+        this.cKsPath = cKsPath;
+        this.cKsPass = cKsPass;
+        this.cKeyPass = cKeyPass;
+        this.ctrustPath = ctrustPath;
+        this.ctrustPass = ctrustPass;
+    }
+
+    public void run() throws Exception
+    {
         SSLContext sslContext = Auth.getSSLContext("TLS", "JKS", cKsPath, cKsPass, cKeyPass, ctrustPath, ctrustPass);
 
         SSLSocketFactory socketFactory = sslContext.getSocketFactory();
@@ -51,7 +61,7 @@ public class TLSClient
 
     public static void main(String[] args) throws Exception
     {
-        TLSClient client = new TLSClient();
-        client.run(args[0], Integer.parseInt(args[1]));
+        TLSClient client = new TLSClient(args[0], Integer.parseInt(args[1]), args[2], args[3], args[4], args[5], args[6]);
+        client.run();
     }
 }
