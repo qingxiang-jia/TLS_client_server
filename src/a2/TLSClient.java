@@ -47,17 +47,6 @@ public class TLSClient
             socket.startHandshake();
             logic = new ClientLogic(socket.getInputStream(), socket.getOutputStream());
             logic.perform(); // all user interactions are handled here
-
-
-
-
-//            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-//            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-//            send("hello from client", out);
-//            send("exit", out);
-//            receive(in); // should handle exceptions
-//            socket.close(); // should handle exceptions
         } catch (UnknownHostException e) {
             System.out.println("Host " + sIP + " unreachable");
         } catch (IOException e) {
@@ -69,21 +58,6 @@ public class TLSClient
                 } catch (IOException e) {
                     System.out.println("Cannot close socket");
                 }
-        }
-    }
-
-    public static void send(String s, PrintWriter out) throws IOError
-    {
-        System.out.println("Sending: " + s);
-        out.println(s);
-    }
-
-    public static void receive(BufferedReader in) throws IOException
-    {
-        String s;
-        while ((s = in.readLine()) != null)
-        {
-            System.out.println("Received: " + s);
         }
     }
 

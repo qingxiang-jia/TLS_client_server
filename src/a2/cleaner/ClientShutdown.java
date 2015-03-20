@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Ensures that client terminates nicely.
+ * Ensures that client terminates nicely when ctrl+C is hit.
  * So far, it only closes client socket.
  */
 public class ClientShutdown extends Thread
