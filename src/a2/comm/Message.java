@@ -21,6 +21,7 @@ public class Message implements Serializable
     public static final int PUT_RSP_N = 6;
     public static final int PUT_RSP_E = 7;
     public static final int ERROR_RSP = 8; // any errors will be indicated
+    public static final int SUCCESS_RSP = 9; // indicating operation's success
 
     int type;
     Path path;
