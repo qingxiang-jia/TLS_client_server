@@ -31,7 +31,7 @@ public class TLSServer
         SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
         sslServerSocket.setNeedClientAuth(true); // mutual authentication
 
-        while (true)
+        while (true) // for now, it's an echo server
         {
             SSLSocket socket = (SSLSocket) sslServerSocket.accept();
             socket.startHandshake();

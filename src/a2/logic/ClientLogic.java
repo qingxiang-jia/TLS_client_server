@@ -46,7 +46,7 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("N"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [get path N]
-                                ClientHandler.handGet(cmd[1], netIn, netOut);
+                                ClientHandler.handleGet(cmd[1], netIn, netOut);
                         } else // get path E pwd
                         {
                             if (cmd[2].equalsIgnoreCase("N"))
@@ -54,7 +54,7 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("E"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [get path E pwd]
-                                ClientHandler.handGet(cmd[1], cmd[3], netIn, netOut);
+                                ClientHandler.handleGet(cmd[1], cmd[3], netIn, netOut);
                         }
                     } else if (cmd[0].equalsIgnoreCase("put")) // put
                     {
@@ -65,7 +65,7 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("N"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [put path N]
-                                ClientHandler.handPut(cmd[1], netIn, netOut);
+                                ClientHandler.handlePut(cmd[1], netIn, netOut);
                         } else // put path E pwd
                         {
                             if (cmd[2].equalsIgnoreCase("N"))
@@ -73,7 +73,7 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("E"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [put path E pwd]
-                                ClientHandler.handPut(cmd[1], cmd[3], netIn, netOut);
+                                ClientHandler.handlePut(cmd[1], cmd[3], netIn, netOut);
                         }
                     } else
                         System.out.println("Error: Invalid commands, options are \"get\" \"put\" \"stop\"");
