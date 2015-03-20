@@ -18,7 +18,7 @@ public class TLSClient
     String cKsPath, cKsPass, cKeyPass, ctrustPath, ctrustPass;
     String sIP;
     int sPort;
-    Thread clientShutdown;
+    Thread clientShutdown; // to be registered with JVM shutdown hook
 
     public TLSClient(String sIP, int sPort,
                      String cKsPath, String cKsPass, String cKeyPass, String ctrustPath, String ctrustPass)
@@ -63,7 +63,6 @@ public class TLSClient
         } catch (IOException e) {
             System.out.println("Cannot create SSL socket");
         } finally { // when exception happens close socket
-            System.out.println("finally");
             if (socket != null)
                 try {
                     socket.close();
