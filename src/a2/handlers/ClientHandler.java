@@ -1,10 +1,13 @@
 package a2.handlers;
 
 import a2.comm.Message;
+import a2.util.ByteHelper;
+import a2.util.Crypto;
 import a2.util.Hasher;
 import a2.util.IO;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.Arrays;
 
@@ -40,9 +43,31 @@ public class ClientHandler
                     System.out.printf("Error: Computed hash of %s does not match retrieved hash\n", rsp.getPath().getFileName());
                 else { /** nothing wrong, write the received file to disk **/
                     IO.writeFile(rsp.getData(), rsp.getPath().getFileName().toString());
+                    System.out.printf("Retrieval of %s completed\n", rsp.getPath().getFileName());
                 }
             } else if (rsp.getType() == Message.GET_RSP_E) { // decrypt, hash, and compare, if good, write to disk
-
+                if (password == null) {
+                    System.out.println("Error: Server returned encrypted data, but no password provided");
+                } else { // encrypted, have password
+                    /** decrypt data **/
+                    byte[][] VICiphertext = ByteHelper.split(rsp.getData(), 16);
+                    byte[] IV = VICiphertext[0], ciphertext = VICiphertext[1];
+                    byte[] plaintext = null;
+                    try {
+                        plaintext = Crypto.decryptAES(password.getBytes(Charset.forName("UTF-8")), IV, ciphertext);
+                    } catch (Crypto.DecryptionFailedException e) {
+                        System.out.println("Error: Decryption failed, wrong password or file not encrypted");
+                    }
+                    /** check hash **/
+                    if (plaintext != null) {
+                        if (!Arrays.equals(Hasher.SHA256(plaintext), rsp.getHash()))
+                            System.out.printf("Error: Computed hash of %s does not match retrieved hash\n", rsp.getPath().getFileName());
+                        else { /** nothing wrong, write the received file to disk **/
+                            IO.writeFile(plaintext, rsp.getPath().getFileName().toString());
+                            System.out.printf("Retrieval of %s completed\n", rsp.getPath().getFileName());
+                        }
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,16 +98,4 @@ public class ClientHandler
     {
 
     }
-
-    public static void receive(BufferedReader in)
-    {
-        String s;
-        try {
-            while ((s = in.readLine()) != null)
-                System.out.println("Received: " + s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
