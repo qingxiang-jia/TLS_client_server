@@ -4,6 +4,9 @@ import a2.handlers.ClientHandler;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -46,7 +49,14 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("N"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [get path N]
-                                ClientHandler.handleGet(cmd[1], netIn, netOut);
+                            {
+                                try {
+                                    Path filePath = Paths.get(cmd[1]);
+                                    ClientHandler.handleGet(filePath, netIn, netOut);
+                                } catch (InvalidPathException e) {
+                                    System.out.println("Error: File path invalid");
+                                }
+                            }
                         } else // get path E pwd
                         {
                             if (cmd[2].equalsIgnoreCase("N"))
@@ -54,7 +64,14 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("E"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [get path E pwd]
-                                ClientHandler.handleGet(cmd[1], cmd[3], netIn, netOut);
+                            {
+                                try {
+                                    Path filePath = Paths.get(cmd[1]);
+                                    ClientHandler.handleGet(filePath, cmd[3], netIn, netOut);
+                                } catch (InvalidPathException e) {
+                                    System.out.println("Error: File path invalid");
+                                }
+                            }
                         }
                     } else if (cmd[0].equalsIgnoreCase("put")) // put
                     {
@@ -65,7 +82,14 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("N"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [put path N]
-                                ClientHandler.handlePut(cmd[1], netIn, netOut);
+                            {
+                                try {
+                                    Path filePath = Paths.get(cmd[1]);
+                                    ClientHandler.handlePut(filePath, netIn, netOut);
+                                } catch (InvalidPathException e) {
+                                    System.out.println("Error: File path invalid");
+                                }
+                            }
                         } else // put path E pwd
                         {
                             if (cmd[2].equalsIgnoreCase("N"))
@@ -73,7 +97,14 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("E"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else // legal [put path E pwd]
-                                ClientHandler.handlePut(cmd[1], cmd[3], netIn, netOut);
+                            {
+                                try {
+                                    Path filePath = Paths.get(cmd[1]);
+                                    ClientHandler.handlePut(filePath, cmd[3], netIn, netOut);
+                                } catch (InvalidPathException e) {
+                                    System.out.println("Error: File path invalid");
+                                }
+                            }
                         }
                     } else
                         System.out.println("Error: Invalid commands, options are \"get\" \"put\" \"stop\"");
