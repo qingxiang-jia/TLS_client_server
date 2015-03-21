@@ -1,5 +1,3 @@
-package a2.comm;
-
 import java.io.Serializable;
 import java.nio.file.Path;
 

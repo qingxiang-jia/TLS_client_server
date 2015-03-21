@@ -1,11 +1,3 @@
-package a2.handlers;
-
-import a2.comm.Message;
-import a2.util.ByteHelper;
-import a2.util.Crypto;
-import a2.util.Hasher;
-import a2.util.IO;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
@@ -104,6 +96,8 @@ public class ClientHandler
             Message msg;
             /** prepare file to send **/
             byte[] plaintext = IO.readFile(path.toString());
+            System.out.println(path.toString());
+            System.out.println(plaintext.length);
             byte[] hash = Hasher.SHA256(plaintext);
             if (password == null) { /** if no encryption, ready to send **/
                 msg = new Message(Message.PUT_REQ_N, plaintext, hash);
@@ -113,6 +107,8 @@ public class ClientHandler
                 byte[] IVCiphertext = ByteHelper.concate(IV, ciphertext);
                 msg = new Message(Message.PUT_REQ_E, IVCiphertext, hash);
             } /** send **/
+            System.out.println(msg.getPath() == null);
+            System.out.println(msg.getData().length);
             objOut.writeObject(msg);
             /** handle server response **/
             Message rsp = (Message) objIn.readObject(); // blocking

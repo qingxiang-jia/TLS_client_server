@@ -1,5 +1,3 @@
-package a2.util;
-
 /**
  * Deals with all byte or byte array related operations.
  * Can be used to prepend IV to file or to split IV out of a file.

@@ -1,9 +1,3 @@
-package a2;
-
-import a2.hooks.ClientShutdownHook;
-import a2.logic.ClientLogic;
-import a2.net.Auth;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
@@ -11,7 +5,7 @@ import java.io.*;
 import java.net.UnknownHostException;
 
 /**
- * a2.TLSClient [server ip] [server port]
+ * TLSClient [server ip] [server port]
  */
 public class TLSClient
 {

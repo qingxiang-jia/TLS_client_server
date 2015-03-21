@@ -1,14 +1,8 @@
-package a2;
-
-import a2.handlers.ServerHandler;
-import a2.hooks.ServerShutdownHook;
-import a2.net.Auth;
-
 import javax.net.ssl.*;
 import java.io.*;
 
 /**
- * a2.TLSServer [port]
+ * TLSServer [port]
  */
 public class TLSServer
 {

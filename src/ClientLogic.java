@@ -1,6 +1,4 @@
-package a2.logic;
-
-import a2.handlers.ClientHandler;
+import ClientHandler;
 
 import java.io.InputStream;
 import java.io.OutputStream;

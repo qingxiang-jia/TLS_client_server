@@ -1,3 +1,3 @@
 #! /bin/sh
-javac a2/TLSServer.java
-java a2.TLSServer 8087 "/Users/lee/Dropbox/NS/assn2/programming/s.ks" "sstorepass" "skeypass" "/Users/lee/Dropbox/NS/assn2/programming/strust.ks" "struststorepass"
+# javac a2/server/TLSServer.java
+java TLSServer 8087 "/Users/lee/Dropbox/NS/assn2/programming/s.ks" "sstorepass" "skeypass" "/Users/lee/Dropbox/NS/assn2/programming/strust.ks" "struststorepass"
