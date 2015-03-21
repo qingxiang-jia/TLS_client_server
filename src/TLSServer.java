@@ -1,5 +1,10 @@
-import javax.net.ssl.*;
-import java.io.*;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSocket;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * TLSServer [port]
@@ -31,37 +36,26 @@ public class TLSServer
         shutdownHook = new ServerShutdownHook(sslServerSocket, null); // add socket to the hook
         Runtime.getRuntime().addShutdownHook(shutdownHook); // register the hook
 
-        while (true) // for now, it's an echo server
-        {
+        try {
             SSLSocket socket = (SSLSocket) sslServerSocket.accept();
             ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
             socket.startHandshake();
+            ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
+            while (true)
+                ServerHandler.handles(objIn, objOut);
+        } finally {
             try {
-                ServerHandler.handles(socket.getInputStream(), socket.getOutputStream());
-
-
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//                PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-//
-//                writer.println("Welcome~, enter exit to leave.");
-//                String s;
-//                while ((s = reader.readLine()) != null && !s.trim().equalsIgnoreCase("exit")) {
-//                    writer.println("Echo: " + s);
-//                }
-//                writer.println("Bye~");
-            } catch (Exception e) {
+//                socket.close();
+//                System.out.println("finally: sslSocket closed");
+                sslServerSocket.close();
+                System.out.println("finally: sslServerSocket closed");
+            } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    socket.close();
-                    System.out.println("finally: sslSocket closed");
-                    sslServerSocket.close();
-                    System.out.println("finally: sslServerSocket closed");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
+
+
     }
 
     public static void main(String[] args) throws Exception

@@ -13,16 +13,12 @@ public class ServerHandler
 {
     /**
      * Handles all client requests, a role of dispatcher.
-     * @param netIn data from client comes in
-     * @param netOut data sent to client
+     * @param objIn data from client comes in
+     * @param objOut data sent to client
      */
-    public static void handles(InputStream netIn, OutputStream netOut)
+    public static void handles(ObjectInputStream objIn, ObjectOutputStream objOut)
     {
-        ObjectOutputStream objOut = null;
-        ObjectInputStream objIn = null;
         try {
-            objOut = new ObjectOutputStream(netOut);
-            objIn = new ObjectInputStream(netIn);
             Message msg;
             msg = (Message) objIn.readObject(); // blocking
             if (msg.getType() == Message.GET_REQ_N || msg.getType() == Message.GET_REQ_E) // delegation
@@ -33,19 +29,6 @@ public class ServerHandler
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
-        } finally {
-            try {
-                if (objOut != null)
-                    objOut.close();
-                if (objIn != null)
-                    objIn.close();
-                if (netOut != null)
-                    netOut.close();
-                if (netIn != null)
-                    netIn.close();
-            } catch (IOException e) {
-                System.out.println("Cannot close stream(s)");
-            }
         }
     }
 
@@ -62,9 +45,9 @@ public class ServerHandler
             file = IO.readFileThrowsException(msg.getPath().toString());
             hash = IO.readFileThrowsException(msg.getPath().toString()+".sha256");
             if (msg.getType() == Message.GET_REQ_N) { // no encryption
-                rsp = new Message(Message.GET_RSP_N, file, hash);
+                rsp = new Message(Message.GET_RSP_N, msg.getPath(), file, hash);  // <-- for now, pending Piazza
             } else { // with encryption
-                rsp = new Message(Message.GET_RSP_E, file, hash);
+                rsp = new Message(Message.GET_RSP_E, msg.getPath(), file, hash);  // <-- for now, pending Piazza
             }
         } catch (IOException e) { // anyway, file is unreadable
             try {
@@ -88,12 +71,13 @@ public class ServerHandler
     private static void handlePutRequest(ObjectOutputStream objOut, Message msg)
     {
         /** write file and hash to disk **/
-        IO.writeFile(msg.getData(), msg.getPath().getFileName().toString());
-        IO.writeFile(msg.getHash(), msg.getPath().getFileName().toString()+".sha256");
+        IO.writeFile(msg.getData(), msg.getPath().getFileName());
+        IO.writeFile(msg.getHash(), msg.getPath().getFileName()+".sha256");
         /** send success notice **/
-        Message rsp = new Message(Message.SUCCESS_RSP, "Transfer of "+msg.getPath().getFileName().toString()+" complete");
+        Message rsp = new Message(Message.SUCCESS_RSP, "Transfer of "+msg.getPath().getFileName()+" complete");
         try {
             objOut.writeObject(rsp);
+            System.out.println("Send success message");
         } catch (IOException e) {
             System.out.println("Failed to send success message");
         }

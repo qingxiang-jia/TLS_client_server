@@ -1,27 +1,31 @@
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Scanner;
-import Path.IllegalFilePathException;
 
 /**
  * Handles all user interactions of the client.
  */
 public class ClientLogic
 {
-    InputStream netIn; // data from server comes out
-    OutputStream netOut; // data sent to server
+    ObjectOutputStream objOut = null; // data from server comes out
+    ObjectInputStream objIn = null; // data sent to server
 
     public ClientLogic(InputStream netIn, OutputStream netOut)
     {
-        this.netIn = netIn;
-        this.netOut = netOut;
+        try {
+            objOut = new ObjectOutputStream(netOut);
+            objIn = new ObjectInputStream(netIn);
+        } catch (IOException e) {
+            System.out.println("Cannot create object streams from streams");
+        }
     }
+
 
     public void perform() // should ask Debra if command is case sensitive
     {
         Scanner keyboard = new Scanner(System.in);
         while (true)
         {
+            System.out.println("waiting for user input");
             String userInput = keyboard.nextLine();
             if (userInput.equalsIgnoreCase("stop"))
                 break;
@@ -46,7 +50,7 @@ public class ClientLogic
                             {
                                 try {
                                     Path filePath = new Path(cmd[1]);
-                                    ClientHandler.handleGet(filePath, netIn, netOut);
+                                    ClientHandler.handleGet(filePath, objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
                                 }
@@ -61,7 +65,7 @@ public class ClientLogic
                             {
                                 try {
                                     Path filePath = new Path(cmd[1]);
-                                    ClientHandler.handleGet(filePath, cmd[3], netIn, netOut);
+                                    ClientHandler.handleGet(filePath, cmd[3], objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
                                 }
@@ -79,7 +83,7 @@ public class ClientLogic
                             {
                                 try {
                                     Path filePath = new Path(cmd[1]);
-                                    ClientHandler.handlePut(filePath, netIn, netOut);
+                                    ClientHandler.handlePut(filePath, objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
                                 }
@@ -94,7 +98,7 @@ public class ClientLogic
                             {
                                 try {
                                     Path filePath = new Path(cmd[1]);
-                                    ClientHandler.handlePut(filePath, cmd[3], netIn, netOut);
+                                    ClientHandler.handlePut(filePath, cmd[3], objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
                                 }

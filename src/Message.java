@@ -31,9 +31,10 @@ public class Message implements Serializable
         this.path = path;
     }
 
-    public Message(int type, byte[] data, byte[] hash) // client: put, server: get
+    public Message(int type, Path path, byte[] data, byte[] hash) // client: put, server: get
     {
         this.type = type;
+        this.path = path;
         this.data = data;
         this.hash = hash;
     }

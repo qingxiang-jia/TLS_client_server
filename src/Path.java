@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * I hate CLIC lab using Java 6
@@ -7,7 +8,7 @@ import java.io.File;
  *      Relative path: dir1/dir2/a.txt
  *      Absolute path: /dir1/dir2/a.txt
  */
-public class Path
+public class Path implements Serializable
 {
     String[] filePath;
 
@@ -52,8 +53,6 @@ public class Path
         File file = new File(fullPath);
         return file.isFile();
     }
-
-    public class IllegalFilePathException extends Exception {}
 
     public static void main(String args[]) throws IllegalFilePathException
     {

@@ -7,18 +7,14 @@ import java.util.Arrays;
  */
 public class ClientHandler
 {
-    public static void handleGet(Path path, InputStream netIn, OutputStream netOut)
+    public static void handleGet(Path path, ObjectInputStream objIn, ObjectOutputStream objOut)
     {
-        handleGet(path, null, netIn, netOut);
+        handleGet(path, null, objIn, objOut);
     }
 
-    public static void handleGet(Path path, String password, InputStream netIn, OutputStream netOut)
+    public static void handleGet(Path path, String password, ObjectInputStream objIn, ObjectOutputStream objOut)
     {
-        ObjectOutputStream objOut = null;
-        ObjectInputStream objIn = null;
         try {
-            objOut = new ObjectOutputStream(netOut);
-            objIn = new ObjectInputStream(netIn);
             Message msg;
             if (password == null)
                 msg = new Message(Message.GET_REQ_N, path); // get, no encryption
@@ -64,50 +60,29 @@ public class ClientHandler
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
-        } finally {
-            try {
-                if (objOut != null)
-                    objOut.close();
-                if (objIn != null)
-                    objIn.close();
-                if (netOut != null)
-                    netOut.close();
-                if (netIn != null)
-                    netIn.close();
-            } catch (IOException e) {
-                System.out.println("Cannot close stream(s)");
-            }
         }
     }
 
-    public static void handlePut(Path path, InputStream netIn, OutputStream netOut)
+    public static void handlePut(Path path, ObjectInputStream objIn, ObjectOutputStream objOut)
     {
-        handlePut(path, null, netIn, netOut);
+        handlePut(path, null, objIn, objOut);
     }
 
-    public static void handlePut(Path path, String password, InputStream netIn, OutputStream netOut)
+    public static void handlePut(Path path, String password, ObjectInputStream objIn, ObjectOutputStream objOut)
     {
-        ObjectOutputStream objOut = null;
-        ObjectInputStream objIn = null;
         try {
-            objOut = new ObjectOutputStream(netOut);
-            objIn = new ObjectInputStream(netIn);
             Message msg;
             /** prepare file to send **/
             byte[] plaintext = IO.readFile(path.toString());
-            System.out.println(path.toString());
-            System.out.println(plaintext.length);
             byte[] hash = Hasher.SHA256(plaintext);
             if (password == null) { /** if no encryption, ready to send **/
-                msg = new Message(Message.PUT_REQ_N, plaintext, hash);
+                msg = new Message(Message.PUT_REQ_N, path, plaintext, hash);
             } else { /** encrypt file **/
                 byte[] IV = new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 byte[] ciphertext = Crypto.encryptAES(password.getBytes(Charset.forName("UTF-8")), IV, plaintext);
                 byte[] IVCiphertext = ByteHelper.concate(IV, ciphertext);
-                msg = new Message(Message.PUT_REQ_E, IVCiphertext, hash);
+                msg = new Message(Message.PUT_REQ_E, path, IVCiphertext, hash);
             } /** send **/
-            System.out.println(msg.getPath() == null);
-            System.out.println(msg.getData().length);
             objOut.writeObject(msg);
             /** handle server response **/
             Message rsp = (Message) objIn.readObject(); // blocking
@@ -117,19 +92,6 @@ public class ClientHandler
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
-        } finally {
-            try {
-                if (objOut != null)
-                    objOut.close();
-                if (objIn != null)
-                    objIn.close();
-                if (netOut != null)
-                    netOut.close();
-                if (netIn != null)
-                    netIn.close();
-            } catch (IOException e) {
-                System.out.println("Cannot close stream(s)");
-            }
         }
     }
 }
