@@ -1,4 +1,4 @@
-package a2.cleaner;
+package a2.hooks;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -7,11 +7,11 @@ import java.net.Socket;
  * Ensures that client terminates nicely when ctrl+C is hit.
  * So far, it only closes client socket.
  */
-public class ClientShutdown extends Thread
+public class ClientShutdownHook extends Thread
 {
     Socket socketOfClient;
 
-    public ClientShutdown(Socket socketOfClient)
+    public ClientShutdownHook(Socket socketOfClient)
     {
         this.socketOfClient = socketOfClient;
     }
