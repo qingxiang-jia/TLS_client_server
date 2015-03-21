@@ -1,9 +1,7 @@
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
+import Path.IllegalFilePathException;
 
 /**
  * Handles all user interactions of the client.
@@ -47,10 +45,10 @@ public class ClientLogic
                             else // legal [get path N]
                             {
                                 try {
-                                    Path filePath = Paths.get(cmd[1]);
+                                    Path filePath = new Path(cmd[1]);
                                     ClientHandler.handleGet(filePath, netIn, netOut);
-                                } catch (InvalidPathException e) {
-                                    System.out.println("Error: File path invalid");
+                                } catch (IllegalFilePathException e) {
+                                    System.out.println("Error: Invalid file path or file does not exist");
                                 }
                             }
                         } else // get path E pwd
@@ -62,10 +60,10 @@ public class ClientLogic
                             else // legal [get path E pwd]
                             {
                                 try {
-                                    Path filePath = Paths.get(cmd[1]);
+                                    Path filePath = new Path(cmd[1]);
                                     ClientHandler.handleGet(filePath, cmd[3], netIn, netOut);
-                                } catch (InvalidPathException e) {
-                                    System.out.println("Error: File path invalid");
+                                } catch (IllegalFilePathException e) {
+                                    System.out.println("Error: Invalid file path or file does not exist");
                                 }
                             }
                         }
@@ -80,10 +78,10 @@ public class ClientLogic
                             else // legal [put path N]
                             {
                                 try {
-                                    Path filePath = Paths.get(cmd[1]);
+                                    Path filePath = new Path(cmd[1]);
                                     ClientHandler.handlePut(filePath, netIn, netOut);
-                                } catch (InvalidPathException e) {
-                                    System.out.println("Error: File path invalid");
+                                } catch (IllegalFilePathException e) {
+                                    System.out.println("Error: Invalid file path or file does not exist");
                                 }
                             }
                         } else // put path E pwd
@@ -95,10 +93,10 @@ public class ClientLogic
                             else // legal [put path E pwd]
                             {
                                 try {
-                                    Path filePath = Paths.get(cmd[1]);
+                                    Path filePath = new Path(cmd[1]);
                                     ClientHandler.handlePut(filePath, cmd[3], netIn, netOut);
-                                } catch (InvalidPathException e) {
-                                    System.out.println("Error: File path invalid");
+                                } catch (IllegalFilePathException e) {
+                                    System.out.println("Error: Invalid file path or file does not exist");
                                 }
                             }
                         }

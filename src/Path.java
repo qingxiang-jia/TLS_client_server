@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.io.File;
 
 /**
  * I hate CLIC lab using Java 6
@@ -11,7 +11,7 @@ public class Path
 {
     String[] filePath;
 
-    public Path(String path)
+    public Path(String path) throws IllegalFilePathException
     {
         String fullPath;
         if (!path.startsWith("/")) { // relative path, make it absolute
@@ -19,6 +19,12 @@ public class Path
             fullPath = prefix + path;
         } else
             fullPath = path;
+
+        /** check if path is a garbage input **/
+        if (!checkPath(fullPath))
+            throw new IllegalFilePathException();
+
+        /** all good, save the path **/
         String[] elements = fullPath.split("/");
         filePath = new String[elements.length - 1];
         for (int i = 1; i < elements.length; i++)
@@ -39,5 +45,20 @@ public class Path
             sb.append(dir);
         }
         return sb.toString();
+    }
+
+    private boolean checkPath(String fullPath)
+    {
+        File file = new File(fullPath);
+        return file.isFile();
+    }
+
+    public class IllegalFilePathException extends Exception {}
+
+    public static void main(String args[]) throws IllegalFilePathException
+    {
+        Path path = new Path("Path2.java");
+        System.out.println(path.getFileName());
+        System.out.println(path.toString());
     }
 }

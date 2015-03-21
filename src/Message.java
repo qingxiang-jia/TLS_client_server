@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.nio.file.Path;
 
 /**
  * Represents the data sent between server and client.
