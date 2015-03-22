@@ -75,7 +75,7 @@ public class Path implements Serializable
         return sb.toString();
     }
 
-    public boolean checkPath(String fullPath)
+    public static boolean checkPath(String fullPath)
     {
         File file = new File(fullPath);
         return file.isFile();
@@ -83,8 +83,5 @@ public class Path implements Serializable
 
     public static void main(String args[]) throws IllegalFilePathException
     {
-        Path path = new Path("Path.java", false);
-        System.out.println(path.getFileName());
-        System.out.println(path.toString());
     }
 }

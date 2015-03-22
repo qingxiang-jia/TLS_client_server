@@ -91,4 +91,52 @@ public class IO
             }
         }
     }
+
+    public static void serialize(String path, Object obj)
+    {
+        FileOutputStream fileOut = null;
+        ObjectOutputStream objOut = null;
+        try {
+            fileOut = new FileOutputStream(path);
+            objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(obj);
+        } catch (IOException e) {
+            System.out.println("Failed to serialize");
+        } finally {
+            try {
+                if (objOut != null)
+                    objOut.close();
+                if (fileOut != null)
+                    fileOut.close();
+            } catch (IOException e) {
+                System.out.println("Failed to close file &/ object stream");
+            }
+        }
+    }
+
+    public static Object deserialize(String path)
+    {
+        FileInputStream fileIn = null;
+        ObjectInputStream objIn = null;
+        Object obj = null;
+        try {
+            fileIn = new FileInputStream(path);
+            objIn = new ObjectInputStream(fileIn);
+            obj = objIn.readObject();
+        } catch (IOException e) {
+            System.out.println("Failed to serialize");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace(); // which never happens
+        } finally {
+            try {
+                if (objIn != null)
+                    objIn.close();
+                if (fileIn != null)
+                    fileIn.close();
+            } catch (IOException e) {
+                System.out.println("Failed to close file &/ object stream");
+            }
+        }
+        return obj;
+    }
 }

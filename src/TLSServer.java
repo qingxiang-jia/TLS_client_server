@@ -5,6 +5,7 @@ import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.security.cert.X509Certificate;
 
 /**
  * TLSServer [port]
@@ -43,15 +44,18 @@ public class TLSServer
         Runtime.getRuntime().addShutdownHook(shutdownHook); // register the hook
         SSLSocket socket = null;
 
+        FileAccess fileAccess = new FileAccess(); // initialize file access control
+
         while (true) { // outer while loop, on the level of SSLServerSocket
             try {
                 socket = (SSLSocket) sslServerSocket.accept();
                 ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
                 socket.startHandshake();
+                X509Certificate cert = socket.getSession().getPeerCertificateChain()[0];
                 ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
                 while (true) // inner while loop, on the level of SSLSocket
-                    ServerHandler.handles(objIn, objOut);
+                    ServerHandler.handles(objIn, objOut, cert, fileAccess);
             } catch (IOException e) {
                 System.out.println("Socket (to client) failed, exiting");
             } finally {
