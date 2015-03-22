@@ -25,14 +25,6 @@ public class ServerHandler
                 handleGetRequest(objOut, msg);
             else if (msg.getType() == Message.PUT_REQ_N || msg.getType() == Message.PUT_REQ_E) // delegation
                 handlePutRequest(objOut, msg);
-//        } catch (IOException e) {
-//            System.out.println("Something wrong with client, exiting");
-//            try {
-//                objIn.close();
-//                objOut.close();
-//            } catch(IOException innerE) {
-//                System.out.println("Cannot close object stream(s)");
-//            }
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
         }
@@ -44,6 +36,8 @@ public class ServerHandler
      */
     private static void handleGetRequest(ObjectOutputStream objOut, Message msg)
     {
+        /** check if file path is legal (is path in right format + does file exist) **/
+
         /** read wanted file **/
         byte[] file, hash;
         Message rsp = null;

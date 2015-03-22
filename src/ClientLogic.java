@@ -43,7 +43,7 @@ public class ClientLogic
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else { // legal [get path N]
                                 try {
-                                    Path filePath = new Path(cmd[1]);
+                                    Path filePath = new Path(cmd[1], false); // don't check path, it's server's job
                                     ClientHandler.handleGet(filePath, objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
@@ -58,7 +58,7 @@ public class ClientLogic
                                 System.out.println("Error: Password must be 8 characters");
                             else { // legal [get path E pwd]
                                 try {
-                                    Path filePath = new Path(cmd[1]);
+                                    Path filePath = new Path(cmd[1], false); // don't check path, it's server's job
                                     ClientHandler.handleGet(filePath, cmd[3], objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
@@ -73,7 +73,7 @@ public class ClientLogic
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else { // legal [put path N]
                                 try {
-                                    Path filePath = new Path(cmd[1]);
+                                    Path filePath = new Path(cmd[1], true); // check path in case of garbage input
                                     ClientHandler.handlePut(filePath, objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
@@ -88,7 +88,7 @@ public class ClientLogic
                                 System.out.println("Error: Password must be 8 characters" + "|" + cmd[2] + "|");
                             else { // legal [put path E pwd]
                                 try {
-                                    Path filePath = new Path(cmd[1]);
+                                    Path filePath = new Path(cmd[1], true); // check path in case of garbage input
                                     ClientHandler.handlePut(filePath, cmd[3], objIn, objOut);
                                 } catch (IllegalFilePathException e) {
                                     System.out.println("Error: Invalid file path or file does not exist");
