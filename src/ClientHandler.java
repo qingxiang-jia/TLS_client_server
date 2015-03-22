@@ -36,6 +36,7 @@ public class ClientHandler
                     System.out.println("Error: Server returned encrypted data, but no password provided");
                 } else { // encrypted, have password
                     /** decrypt data **/
+                    System.out.println("Decrypting received file");
                     byte[][] VICiphertext = ByteHelper.split(rsp.getData(), 16);
                     byte[] IV = VICiphertext[0], ciphertext = VICiphertext[1];
                     byte[] plaintext = null;
@@ -49,6 +50,7 @@ public class ClientHandler
                         if (!Arrays.equals(Hasher.SHA256(plaintext), rsp.getHash()))
                             System.out.printf("Error: Computed hash of %s does not match retrieved hash\n", rsp.getPath().getFileName());
                         else { /** nothing wrong, write the received file to disk **/
+                            System.out.println("Identical hash");
                             IO.writeFile(plaintext, rsp.getPath().getFileName());
                             System.out.printf("Retrieval of %s completed\n", rsp.getPath().getFileName());
                         }

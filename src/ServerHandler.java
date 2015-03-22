@@ -49,6 +49,7 @@ public class ServerHandler
                 System.out.println("Failed to send error message");
             } return; // done
         }
+        System.out.println("Path valid & access granted");
         /** read wanted file **/
         byte[] file, hash;
         try {
@@ -84,6 +85,7 @@ public class ServerHandler
         IO.writeFile(msg.getData(), msg.getPath().getFileName());
         IO.writeFile(msg.getHash(), msg.getPath().getFileName()+".sha256");
         fileAccess.updateAccess(msg.getPath().getFileName(), cert); // add file access for this client (since as required, the server
+        System.out.println("Access table updated");
         /** send success notice **/                                 // only stores file under its directory, filename can be used as path
         Message rsp = new Message(Message.SUCCESS_RSP, "Transfer of "+msg.getPath().getFileName()+" complete");
         try {

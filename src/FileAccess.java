@@ -19,10 +19,13 @@ public class FileAccess implements Serializable
 
     public FileAccess() // if access_table exists, read it in, otherwise create new
     {
-        if (Path.checkPath(defaultTablePath))
+        if (Path.checkPath(defaultTablePath)) {
             accessTable = (Map<String, byte[]>) IO.deserialize(defaultTablePath);
-        else
+            System.out.println("Found existing access table, loaded");
+        } else {
             accessTable = new HashMap<String, byte[]>();
+            System.out.println("No access table, created new");
+        }
     }
 
     public boolean checkAccess(String path, X509Certificate cert)
@@ -49,5 +52,11 @@ public class FileAccess implements Serializable
             System.out.println("Failed to update access table due to invalid certificate encoding");
             return false;
         }
+    }
+
+    // call when server quits
+    public void saveAccessTable()
+    {
+        IO.serialize(defaultTablePath, accessTable);
     }
 }

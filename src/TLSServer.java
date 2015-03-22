@@ -15,9 +15,11 @@ public class TLSServer
     String sKsPath, sKsPass, sKeyPass, strustPath, strustPass;
     int port;
     Thread shutdownHook; // to be registered with JVM shutdown hook
+    boolean shouldRun;
 
     public TLSServer(int port, String sKsPath, String sKsPass, String sKeyPass, String strustPath, String strustPass)
     {
+        shouldRun = true;
         this.port = port;
         this.sKsPath = sKsPath;
         this.sKsPass = sKsPass;
@@ -40,13 +42,13 @@ public class TLSServer
         }
         sslServerSocket.setNeedClientAuth(true); // mutual authentication
 
-        shutdownHook = new ServerShutdownHook(sslServerSocket, null); // add socket to the hook
+        FileAccess fileAccess = new FileAccess(); // initialize file access control
+
+        shutdownHook = new ServerShutdownHook(sslServerSocket, null, fileAccess, this); // add socket to the hook
         Runtime.getRuntime().addShutdownHook(shutdownHook); // register the hook
         SSLSocket socket = null;
 
-        FileAccess fileAccess = new FileAccess(); // initialize file access control
-
-        while (true) { // outer while loop, on the level of SSLServerSocket
+        while (shouldRun) { // outer while loop, on the level of SSLServerSocket
             try {
                 socket = (SSLSocket) sslServerSocket.accept();
                 ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
@@ -54,7 +56,7 @@ public class TLSServer
                 X509Certificate cert = socket.getSession().getPeerCertificateChain()[0];
                 ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
-                while (true) // inner while loop, on the level of SSLSocket
+                while (shouldRun) // inner while loop, on the level of SSLSocket
                     ServerHandler.handles(objIn, objOut, cert, fileAccess);
             } catch (IOException e) {
                 System.out.println("Socket (to client) failed, exiting");
