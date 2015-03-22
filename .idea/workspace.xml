@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e4425ee7-076d-4bf6-9dbe-c9b49324b909" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ByteHelper.java" afterPath="$PROJECT_DIR$/src/ByteHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientHandler.java" afterPath="$PROJECT_DIR$/src/ClientHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientLogic.java" afterPath="$PROJECT_DIR$/src/ClientLogic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Crypto.java" afterPath="$PROJECT_DIR$/src/Crypto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerHandler.java" afterPath="$PROJECT_DIR$/src/ServerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TLSServer.java" afterPath="$PROJECT_DIR$/src/TLSServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NS_assn2.iws" />
@@ -67,10 +62,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TLSServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TLSServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.240876" vertical-offset="630" max-vertical-offset="1230">
+            <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1230">
               <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -99,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ByteHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ByteHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ByteHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="585">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.16746412" vertical-offset="0" max-vertical-offset="627">
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -160,13 +155,13 @@
         <option value="$PROJECT_DIR$/src/Message.java" />
         <option value="$PROJECT_DIR$/src/Path.java" />
         <option value="$PROJECT_DIR$/src/TLSClient.java" />
-        <option value="$PROJECT_DIR$/src/ByteHelper.java" />
         <option value="$PROJECT_DIR$/src/TestAES.java" />
         <option value="$PROJECT_DIR$/src/Crypto.java" />
         <option value="$PROJECT_DIR$/src/ClientHandler.java" />
         <option value="$PROJECT_DIR$/src/ClientLogic.java" />
         <option value="$PROJECT_DIR$/src/ServerHandler.java" />
         <option value="$PROJECT_DIR$/src/TLSServer.java" />
+        <option value="$PROJECT_DIR$/src/ByteHelper.java" />
       </list>
     </option>
   </component>
@@ -698,7 +693,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426976892365</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="vastly improve the server">
+      <created>1426992447317</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1426992447317</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -723,7 +724,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -768,7 +769,8 @@
     <MESSAGE value="implemented Path for java 6" />
     <MESSAGE value="Path is really robust now" />
     <MESSAGE value="fixed many bugs, more to be done" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed many bugs, more to be done" />
+    <MESSAGE value="vastly improve the server" />
+    <option name="LAST_COMMIT_MESSAGE" value="vastly improve the server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1184,14 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ByteHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="585">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Path.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1035">
@@ -1238,11 +1232,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TLSServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.240876" vertical-offset="630" max-vertical-offset="1230">
+        <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1230">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ByteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16746412" vertical-offset="0" max-vertical-offset="627">
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>

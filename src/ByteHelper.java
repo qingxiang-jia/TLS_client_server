@@ -9,7 +9,7 @@ public class ByteHelper
     {
         byte[] res = new byte[pre.length + arr.length];
         System.arraycopy(pre, 0, res, 0, pre.length); // copy pre to res
-        System.arraycopy(arr, 0, res, pre.length+1, arr.length); // copy arr to res
+        System.arraycopy(arr, 0, res, pre.length, arr.length); // copy arr to res
         return res;
     }
 
