@@ -25,37 +25,47 @@ public class TLSServer
         this.strustPass = strustPass;
     }
 
-    public void run() throws Exception
+    public void run()
     {
         SSLContext sslContext = Auth.getSSLContext("TLS", "JKS", sKsPath, sKsPass, sKeyPass, strustPath, strustPass);
 
         SSLServerSocketFactory sslServerSocketFactory = sslContext.getServerSocketFactory();
-        SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
+        SSLServerSocket sslServerSocket = null;
+        try {
+            sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
+        } catch (IOException e) {
+            System.out.println("Cannot create SSLServerSocket at port " + port);
+            System.exit(1); // exit, no need to proceed
+        }
         sslServerSocket.setNeedClientAuth(true); // mutual authentication
 
         shutdownHook = new ServerShutdownHook(sslServerSocket, null); // add socket to the hook
         Runtime.getRuntime().addShutdownHook(shutdownHook); // register the hook
+        SSLSocket socket = null;
 
-        try {
-            SSLSocket socket = (SSLSocket) sslServerSocket.accept();
-            ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
-            socket.startHandshake();
-            ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
-            while (true)
-                ServerHandler.handles(objIn, objOut);
-        } finally {
+        while (true) { // outer while loop, on the level of SSLServerSocket
             try {
-//                socket.close();
-//                System.out.println("finally: sslSocket closed");
-                sslServerSocket.close();
-                System.out.println("finally: sslServerSocket closed");
+                socket = (SSLSocket) sslServerSocket.accept();
+                ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
+                socket.startHandshake();
+                ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
+                ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
+                while (true) // inner while loop, on the level of SSLSocket
+                    ServerHandler.handles(objIn, objOut);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Socket (to client) failed, exiting");
+            } finally {
+                try {
+                    if (socket != null) {
+                        socket.close();
+                        System.out.println("finally: sslSocket closed");
+                    }
+                } catch (IOException e) {
+                    System.out.println("Failed to close socket(s)");
+                }
+                System.out.println("Last client session ended, wait for the next one");
             }
         }
-
-
     }
 
     public static void main(String[] args) throws Exception

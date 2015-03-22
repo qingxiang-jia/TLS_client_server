@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 /**
@@ -29,7 +28,7 @@ public class ClientHandler
                 if (!Arrays.equals(Hasher.SHA256(rsp.getData()), rsp.getHash()))
                     System.out.printf("Error: Computed hash of %s does not match retrieved hash\n", rsp.getPath().getFileName());
                 else { /** nothing wrong, write the received file to disk **/
-                    IO.writeFile(rsp.getData(), rsp.getPath().getFileName().toString());
+                    IO.writeFile(rsp.getData(), rsp.getPath().getFileName());
                     System.out.printf("Retrieval of %s completed\n", rsp.getPath().getFileName());
                 }
             } else if (rsp.getType() == Message.GET_RSP_E) { // decrypt, hash, and compare, if good, write to disk
@@ -41,7 +40,7 @@ public class ClientHandler
                     byte[] IV = VICiphertext[0], ciphertext = VICiphertext[1];
                     byte[] plaintext = null;
                     try {
-                        plaintext = Crypto.decryptAES(password.getBytes(Charset.forName("UTF-8")), IV, ciphertext);
+                        plaintext = Crypto.decryptAES(password, IV, ciphertext);
                     } catch (Crypto.DecryptionFailedException e) {
                         System.out.println("Error: Decryption failed, wrong password or file not encrypted");
                     }
@@ -50,7 +49,7 @@ public class ClientHandler
                         if (!Arrays.equals(Hasher.SHA256(plaintext), rsp.getHash()))
                             System.out.printf("Error: Computed hash of %s does not match retrieved hash\n", rsp.getPath().getFileName());
                         else { /** nothing wrong, write the received file to disk **/
-                            IO.writeFile(plaintext, rsp.getPath().getFileName().toString());
+                            IO.writeFile(plaintext, rsp.getPath().getFileName());
                             System.out.printf("Retrieval of %s completed\n", rsp.getPath().getFileName());
                         }
                     }
@@ -79,7 +78,7 @@ public class ClientHandler
                 msg = new Message(Message.PUT_REQ_N, path, plaintext, hash);
             } else { /** encrypt file **/
                 byte[] IV = new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                byte[] ciphertext = Crypto.encryptAES(password.getBytes(Charset.forName("UTF-8")), IV, plaintext);
+                byte[] ciphertext = Crypto.encryptAES(password, IV, plaintext);
                 byte[] IVCiphertext = ByteHelper.concate(IV, ciphertext);
                 msg = new Message(Message.PUT_REQ_E, path, IVCiphertext, hash);
             } /** send **/

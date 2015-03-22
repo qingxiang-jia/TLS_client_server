@@ -16,7 +16,7 @@ public class ServerHandler
      * @param objIn data from client comes in
      * @param objOut data sent to client
      */
-    public static void handles(ObjectInputStream objIn, ObjectOutputStream objOut)
+    public static void handles(ObjectInputStream objIn, ObjectOutputStream objOut) throws IOException
     {
         try {
             Message msg;
@@ -25,8 +25,14 @@ public class ServerHandler
                 handleGetRequest(objOut, msg);
             else if (msg.getType() == Message.PUT_REQ_N || msg.getType() == Message.PUT_REQ_E) // delegation
                 handlePutRequest(objOut, msg);
-        } catch (IOException e) {
-            e.printStackTrace();
+//        } catch (IOException e) {
+//            System.out.println("Something wrong with client, exiting");
+//            try {
+//                objIn.close();
+//                objOut.close();
+//            } catch(IOException innerE) {
+//                System.out.println("Cannot close object stream(s)");
+//            }
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
         }

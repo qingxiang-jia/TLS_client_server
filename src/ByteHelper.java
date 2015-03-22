@@ -22,4 +22,12 @@ public class ByteHelper
         System.arraycopy(arr, arr1.length, arr2, 0, arr2.length);
         return res;
     }
+
+    public static long byteArrToLong(byte[] byteArr) // need comment
+    {
+        long res = 0;
+        for (int i = 0; i < byteArr.length; i++)
+            res += ((long) byteArr[i] & 0xffL) << (8 * i);
+        return res;
+    }
 }
