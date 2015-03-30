@@ -44,7 +44,7 @@ public class TLSClient
         } catch (UnknownHostException e) {
             System.out.println("Host " + sIP + " unreachable");
         } catch (IOException e) {
-            System.out.println("Cannot create SSL socket");
+            System.out.println("Cannot create SSL socket, perhaps server is not running?");
         } finally { // when exception happens close socket
             System.out.println("Close socket");
             if (socket != null)

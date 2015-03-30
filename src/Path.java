@@ -24,7 +24,7 @@ public class Path implements Serializable
         if (doCheckPath && !path.startsWith("/")) { // relative path, make it absolute
             String prefix = this.getClass().getClassLoader().getResource("").getPath();
             fullPath = prefix + path;
-        } else if (!doCheckPath && !path.startsWith("/"))
+        } else if (!doCheckPath)
             fullPath = path;
         else // relative path can't start with /
             throw new IllegalFilePathException();
@@ -40,11 +40,16 @@ public class Path implements Serializable
             for (int i = 1; i < elements.length; i++)
                 absolutePath[i-1] = elements[i];
         } else { // client's get request, server's put/get response doesn't create new path, so irrelevant here
-            relativePath = new String[elements.length];
-            for (int i = 0; i < elements.length; i++)
-                relativePath[i] = elements[i];
+            if (fullPath.startsWith("/")) { // dealing with absolute path
+                absolutePath = new String[elements.length - 1];
+                for (int i = 1; i < elements.length; i++)
+                    absolutePath[i-1] = elements[i];
+            } else { // dealing with relative path
+                relativePath = new String[elements.length];
+                for (int i = 0; i < elements.length; i++)
+                    relativePath[i] = elements[i];
+            }
         }
-
     }
 
     public String getFileName()

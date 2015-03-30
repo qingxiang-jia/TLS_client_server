@@ -43,7 +43,7 @@ public class ServerHandler
                 System.out.println("Failed to send error message");
             } return; // done
         }
-        System.out.println("Path valid & access granted");
+        System.out.println("Path valid");
         /** read wanted file **/
         byte[] file, hash;
         try {
