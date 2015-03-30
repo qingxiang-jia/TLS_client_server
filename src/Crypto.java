@@ -4,7 +4,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -51,7 +53,7 @@ public class Crypto
     { // IV new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         try {
             Cipher AESCipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); // cannot use PKCS7 with AES in Java
-            SecretKey AESKey = new SecretKeySpec(AESKeyGen16Bit(pwd), "AES"); // set up key using password
+            SecretKey AESKey = new SecretKeySpec(AESKeyGen16BitByHashing(pwd), "AES"); // set up key using password
             AESCipher.init(mode, AESKey, new IvParameterSpec(IV));
             return AESCipher.doFinal(file); // return the encrypted/decrypted byte array
         } catch (NoSuchAlgorithmException e) {
@@ -64,7 +66,7 @@ public class Crypto
             e.printStackTrace();
             if (mode == Cipher.DECRYPT_MODE) throw new DecryptionFailedException();
         } catch (IllegalBlockSizeException e) {
-            System.out.println("The file to be en/decrypted has a size not of multiple of 16. The file is tampered!");
+            System.out.println("AES: Something is wrong.");
             if (mode == Cipher.DECRYPT_MODE) throw new DecryptionFailedException();
         } catch (BadPaddingException e) {
             System.out.println("AES: PKCS5Padding is invalid.");
@@ -82,6 +84,19 @@ public class Crypto
         Random rand = new Random(ByteHelper.byteArrToLong(pwd8Bit.getBytes(Charset.forName("UTF-8"))));
         rand.nextBytes(AESKey);
         return AESKey;
+    }
+
+    private static byte[] AESKeyGen16BitByHashing(String pwd8Bit)
+    {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(pwd8Bit.getBytes(Charset.forName("UTF-8")));
+            byte[] hash32Bit = md.digest();
+            return Arrays.copyOfRange(hash32Bit, 0, 16);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Cannot run SHA-256.");
+        }
+        return null;
     }
 
     // a rename of general exception, notifies caller password MIGHT be wrong

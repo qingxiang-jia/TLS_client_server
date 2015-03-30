@@ -6,8 +6,6 @@ import java.io.*;
  * there is no ServerLogic between this and server.
  *
  * The client can get whatever file it stores via the server.
- * Each client can ONLY get its files. The server should distinguish
- * client by authentication. <-- NOT YET IMPLEMENTED!
  */
 public class ServerHandler
 {
@@ -30,7 +28,6 @@ public class ServerHandler
         }
     }
 
-    // need to check if the client stores the file
     /* server doesn't need to know if the file is encrypted, the client is responsible
      for specifying whether he wants to retrieve the file E or N
      */

@@ -85,7 +85,7 @@ public class ClientLogic
                             else if (!cmd[2].equalsIgnoreCase("E"))
                                 System.out.println("Error: Invalid parameter \"" + cmd[2] + "\"");
                             else if (cmd[3].length() != 8)
-                                System.out.println("Error: Password must be 8 characters" + "|" + cmd[2] + "|");
+                                System.out.println("Error: Password must be 8 characters");
                             else { // legal [put path E pwd]
                                 try {
                                     Path filePath = new Path(cmd[1], true); // check path in case of garbage input

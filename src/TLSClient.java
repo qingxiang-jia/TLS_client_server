@@ -46,7 +46,7 @@ public class TLSClient
         } catch (IOException e) {
             System.out.println("Cannot create SSL socket");
         } finally { // when exception happens close socket
-            System.out.println("Going to close the socket");
+            System.out.println("Close socket");
             if (socket != null)
                 try {
                     socket.close();
@@ -56,6 +56,7 @@ public class TLSClient
         }
     }
 
+    // need to handle wrong input
     public static void main(String[] args) throws Exception
     {
         TLSClient client = new TLSClient(args[0], Integer.parseInt(args[1]), args[2], args[3], args[4], args[5], args[6]);
