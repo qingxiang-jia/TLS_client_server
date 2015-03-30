@@ -6,6 +6,11 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Hasher
 {
+    /**
+     * Computes SHA-256 hash of file.
+     * @param file The file to be hashed
+     * @return A byte array represents the hash of file
+     */
     public static byte[] SHA256(byte[] file)
     {
         byte[] hash = null;

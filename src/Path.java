@@ -2,27 +2,33 @@ import java.io.File;
 import java.io.Serializable;
 
 /**
- * I hate CLIC lab using Java 6
- * Always stores absolute and relative path.
- * If you don't check path, it implies you want relative path, so, the path will stay as it is.
- * If you choose to check path, it implies you want absolute path. It will check the format of
- * the path and whether the referenced file exists. Also, if the path comes as relative path,
- * it will make it absolute based on where the program runs.
+ * Represents path of a file.
  *  Definition:
  *      Relative path: dir1/dir2/a.txt
  *      Absolute path: /dir1/dir2/a.txt
+ *  Illegal examples:
+ *      dir/        no file name
+ *      /dir1/dir2/ no file name
+ *      Any formats not listed in definition section
  */
 public class Path implements Serializable
 {
+    /* each directory name is an element of the arrays, "/" is not stored
+     e.g. path /dir1/dir2/file is stored as ["dir1", "dir2", "file"] */
     String[] absolutePath = null;
     String[] relativePath = null;
 
-    // if don't want client to check path, set doCheckPath to false
+    /**
+     * Constructor
+     * @param path A String object represents a path to a file (see "Definition")
+     * @param doCheckPath True = will check if path is legal AND if file exists; else False
+     * @throws IllegalFilePathException
+     */
     public Path(String path, boolean doCheckPath) throws IllegalFilePathException
     {
         String fullPath;
         if (doCheckPath && !path.startsWith("/")) { // relative path, make it absolute
-            String prefix = this.getClass().getClassLoader().getResource("").getPath();
+            String prefix = this.getClass().getClassLoader().getResource("").getPath(); // get path prefix
             fullPath = prefix + path;
         } else if (!doCheckPath)
             fullPath = path;
@@ -52,16 +58,23 @@ public class Path implements Serializable
         }
     }
 
+    /**
+     * Get file name from a path.
+     * @return File name
+     */
     public String getFileName()
     {
-        if (absolutePath != null)
+        if (absolutePath != null) // absolute path has the priority
             return absolutePath[absolutePath.length - 1];
         else if (relativePath != null)
             return relativePath[relativePath.length - 1];
         else return null;
     }
 
-    // output absolute path if not null, otherwise relative path
+    /**
+     * Outputs absolute path if not null, otherwise relative path
+     * @return File path in String
+     */
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
@@ -75,18 +88,19 @@ public class Path implements Serializable
                 sb.append(dir);
                 sb.append("/");
             }
-            sb.delete(sb.length()-1, sb.length()); // remove trailing /
+            sb.delete(sb.length()-1, sb.length()); // remove trailing "/"
         }
         return sb.toString();
     }
 
+    /**
+     * Check if path is legal AND is file exists.
+     * @param fullPath A String object represents the path to the file
+     * @return Whether the path is legal
+     */
     public static boolean checkPath(String fullPath)
     {
         File file = new File(fullPath);
         return file.isFile();
-    }
-
-    public static void main(String args[]) throws IllegalFilePathException
-    {
     }
 }

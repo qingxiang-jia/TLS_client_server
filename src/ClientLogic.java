@@ -3,12 +3,19 @@ import java.util.Scanner;
 
 /**
  * Handles all user interactions of the client.
+ * The idea is to separate the actual client operation from user interactions.
+ * This class handles all user interactions.
  */
 public class ClientLogic
 {
     ObjectOutputStream objOut = null; // data from server comes out
     ObjectInputStream objIn = null; // data sent to server
 
+    /**
+     * Constructor, takes an InputStream object and OutputStream object.
+     * @param netIn Data sent to server
+     * @param netOut Data from server comes out
+     */
     public ClientLogic(InputStream netIn, OutputStream netOut)
     {
         try {
@@ -19,17 +26,20 @@ public class ClientLogic
         }
     }
 
-
-    public void perform() // should ask Debra if command is case sensitive
+    /**
+     * Applies the client logic, interacts with the user.
+     * Notice: all commands are NOT case sensitive.
+     */
+    public void perform()
     {
-        Scanner keyboard = new Scanner(System.in);
+        Scanner keyboard = new Scanner(System.in); // take user keyboard input
         while (true) {
             System.out.println("waiting for user input");
             String userInput = keyboard.nextLine();
-            if (userInput.equalsIgnoreCase("stop"))
+            if (userInput.equalsIgnoreCase("stop")) // if types stop, quit program
                 break;
             else {
-                String[] cmd = userInput.split("\\s+");
+                String[] cmd = userInput.split("\\s+"); // since there is no space in path, always splits user input by space
                 if (cmd.length < 3)
                     System.out.println("Error: too few arguments.");
                 else if (cmd.length > 4)

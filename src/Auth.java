@@ -9,9 +9,19 @@ import java.security.cert.CertificateException;
 
 /**
  * Utility class: handles authentication related operations.
+ * The idea is for both server and client, these operations are the same, it saves some work to
+ * put them into the same place.
  */
 public class Auth
 {
+    /**
+     * Takes type (of keystore), path (of key store), and password for this keystore; constructs
+     * a KeyStore object.
+     * @param type Type of KeyStore object
+     * @param path Where KeyStore object is stored
+     * @param storePass Password for this KeyStore object
+     * @return A KeyStore object
+     */
     public static KeyStore getKeyStore(String type, String path, String storePass)
     {
         KeyStore keystore = null;
@@ -32,6 +42,12 @@ public class Auth
         return keystore;
     }
 
+    /**
+     * Constructs a KeyManagerFactory given a KeyStore object and its password.
+     * @param store The KeyStore object
+     * @param keyPass Password for the KeyStore object
+     * @return A KeyManagerFactory object
+     */
     public static KeyManagerFactory getKeyManagerFactory(KeyStore store, String keyPass)
     {
         KeyManagerFactory kmf = null;
@@ -48,6 +64,11 @@ public class Auth
         return kmf;
     }
 
+    /**
+     * Constructs a TrustManagerFactory given a KeyStore object that represents trust store.
+     * @param trustStore The KeyStore object that represents a trust store.
+     * @return A TrustMangerFactory object
+     */
     public static TrustManagerFactory getTrustManagerFactory(KeyStore trustStore)
     {
         TrustManagerFactory tmf = null;
@@ -62,6 +83,17 @@ public class Auth
         return tmf;
     }
 
+    /**
+     * Takes all essential elements of an SSLContext and constructs an SSLContext object.
+     * @param contextType A String object that specifies the type of SSLContext
+     * @param storeType A String object that specifies the type of KeyStore
+     * @param keystorePath A String object represents the path to the keystore
+     * @param keystorePass A String object represents the password for the keystore
+     * @param keyPass A String object represents the password for a particular key in the keystore
+     * @param truststorePath A String object represents the path to the trust store
+     * @param truststorePass A String object represents the password for the trust store
+     * @return An SSLContext object
+     */
     public static SSLContext getSSLContext(String contextType, String storeType,
                                            String keystorePath, String keystorePass, String keyPass,
                                            String truststorePath, String truststorePass)
