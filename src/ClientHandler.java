@@ -91,7 +91,8 @@ public class ClientHandler
             if (rsp.getType() == Message.ERROR_RSP || rsp.getType() == Message.SUCCESS_RSP) // no matter what, print it
                 System.out.println(rsp.getInfo());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Server down.\nExiting");
+            System.exit(1);
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
         }
