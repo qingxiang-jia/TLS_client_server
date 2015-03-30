@@ -76,7 +76,7 @@ public class TLSClient
      * Checks if arguments are legal in format. If not, exit with error code 1.
      * @param args String[] object that is the program arguments
      */
-    public static void inputCheck(String[] args)
+    public static void paramCheck(String[] args)
     {
         String usage = "usage: java TLSClient [server_ip] [server_port] [path_keystore] [password_keystore] [password_key] [path_trust_store] [password_trust_store]";
         if (args.length != 7) {
@@ -102,7 +102,7 @@ public class TLSClient
      */
     public static void main(String[] args) throws Exception
     {
-        TLSClient.inputCheck(args); // arguments format check
+        TLSClient.paramCheck(args); // arguments format check
         TLSClient client = new TLSClient(args[0], Integer.parseInt(args[1]), args[2], args[3], args[4], args[5], args[6]);
         client.run();
     }

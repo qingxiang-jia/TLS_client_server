@@ -93,9 +93,34 @@ public class TLSServer
         }
     }
 
-    //TODO need to handle wrong input
+    /**
+     * Checks if arguments are legal in format. If not, exit with error code 1.
+     * @param args String[] object that is the program arguments
+     */
+    public static void paramCheck(String[] args)
+    {
+        String usage = "usage: java TLSServer [port_number] [path_keystore] [password_keystore] [password_key] [path_trust_store] [password_trust_store]";
+        if (args.length != 6) {
+            System.out.println("Number of arguments does not match." + usage);
+            System.exit(1);
+        } else if (!ArgsCheck.isPositiveInteger(args[0])) {
+            System.out.println(args[0] + " is not valid port number.\n" + usage);
+            System.exit(1);
+        } else if (!Path.checkPath(args[1])) {
+            System.out.println("Path " + args[1] + " is illegal and/or does not exist.\n" + usage);
+            System.exit(1);
+        } else if (!Path.checkPath(args[4])) {
+            System.out.println("Path " + args[4] + " is illegal and/or does not exist.\n" + usage);
+            System.exit(1);
+        }
+    }
+
+    /**
+     * Entry point of client program.
+     */
     public static void main(String[] args) throws Exception
     {
+        TLSServer.paramCheck(args); // checks if arguments are legal in format
         TLSServer server = new TLSServer(Integer.parseInt(args[0]), args[1], args[2], args[3], args[4], args[5]);
         server.run();
     }
