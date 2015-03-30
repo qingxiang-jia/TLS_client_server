@@ -42,9 +42,7 @@ public class TLSServer
         }
         sslServerSocket.setNeedClientAuth(true); // mutual authentication
 
-        FileAccess fileAccess = new FileAccess(); // initialize file access control
-
-        shutdownHook = new ServerShutdownHook(sslServerSocket, null, fileAccess, this); // add socket to the hook
+        shutdownHook = new ServerShutdownHook(sslServerSocket, null, this); // add socket to the hook
         Runtime.getRuntime().addShutdownHook(shutdownHook); // register the hook
         SSLSocket socket = null;
 
@@ -53,11 +51,10 @@ public class TLSServer
                 socket = (SSLSocket) sslServerSocket.accept();
                 ((ServerShutdownHook) shutdownHook).setSSLSocket(socket); // add socket to the hook
                 socket.startHandshake();
-                X509Certificate cert = socket.getSession().getPeerCertificateChain()[0];
                 ObjectInputStream objIn = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
                 while (shouldRun) // inner while loop, on the level of SSLSocket
-                    ServerHandler.handles(objIn, objOut, cert, fileAccess);
+                    ServerHandler.handles(objIn, objOut);
             } catch (IOException e) {
                 System.out.println("Socket (to client) failed, exiting");
             } finally {

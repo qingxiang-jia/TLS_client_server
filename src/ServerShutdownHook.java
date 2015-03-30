@@ -11,14 +11,12 @@ public class ServerShutdownHook extends Thread
 {
     Socket sslSocket;
     SSLServerSocket sslServerSocket;
-    FileAccess fileAccess;
     TLSServer tlsServer;
 
-    public ServerShutdownHook(SSLServerSocket sslServerSocket, SSLSocket sslSocket, FileAccess fileAccess, TLSServer tlsServer)
+    public ServerShutdownHook(SSLServerSocket sslServerSocket, SSLSocket sslSocket, TLSServer tlsServer)
     {
         this.sslServerSocket = sslServerSocket;
         this.sslSocket = sslSocket;
-        this.fileAccess = fileAccess;
         this.tlsServer = tlsServer;
     }
 
@@ -37,10 +35,6 @@ public class ServerShutdownHook extends Thread
             } catch (IOException e) {
                 System.out.println("Cannot close sslSocket");
             }
-        if (fileAccess != null) {
-            fileAccess.saveAccessTable();
-            System.out.println("Access table saved");
-        }
     }
 
     public void setSSLSocket(Socket sslSocket)

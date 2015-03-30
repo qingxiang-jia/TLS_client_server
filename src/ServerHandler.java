@@ -1,4 +1,3 @@
-import javax.security.cert.X509Certificate;
 import java.io.*;
 
 /**
@@ -16,18 +15,16 @@ public class ServerHandler
      * Handles all client requests, a role of dispatcher.
      * @param objIn data from client comes in
      * @param objOut data sent to client
-     * @param cert client's certification
-     * @param fileAccess a client can only access its own file
      */
-    public static void handles(ObjectInputStream objIn, ObjectOutputStream objOut, X509Certificate cert, FileAccess fileAccess) throws IOException
+    public static void handles(ObjectInputStream objIn, ObjectOutputStream objOut) throws IOException
     {
         try {
             Message msg;
             msg = (Message) objIn.readObject(); // blocking
             if (msg.getType() == Message.GET_REQ_N || msg.getType() == Message.GET_REQ_E) // delegation
-                handleGetRequest(objOut, msg, cert, fileAccess);
+                handleGetRequest(objOut, msg);
             else if (msg.getType() == Message.PUT_REQ_N || msg.getType() == Message.PUT_REQ_E) // delegation
-                handlePutRequest(objOut, msg, cert, fileAccess);
+                handlePutRequest(objOut, msg);
         } catch (ClassNotFoundException e) {
             System.out.println("Class read out from ObjectInputStream not found");
         }
@@ -37,12 +34,12 @@ public class ServerHandler
     /* server doesn't need to know if the file is encrypted, the client is responsible
      for specifying whether he wants to retrieve the file E or N
      */
-    private static void handleGetRequest(ObjectOutputStream objOut, Message msg, X509Certificate cert, FileAccess fileAccess)
+    private static void handleGetRequest(ObjectOutputStream objOut, Message msg)
     {
         Message rsp = null;
         /** check if file path is legal (is path in right format + file exists)
         check if client has access to the path **/
-        if (!Path.checkPath(msg.getPath().toString()) || !fileAccess.checkAccess(msg.getPath().toString(), cert)) {
+        if (!Path.checkPath(msg.getPath().toString())) {
             try {
                 objOut.writeObject(new Message(Message.ERROR_RSP, "Error: Requested file cannot be retrieved"));
             } catch (IOException innerE) {
@@ -79,13 +76,11 @@ public class ServerHandler
     // server receives the file (not checking its hash), stores
     // the hash and file separately with IV(clear) prepended to ciphertext
     // NEED to add book keeping of who stores the file later
-    private static void handlePutRequest(ObjectOutputStream objOut, Message msg, X509Certificate cert, FileAccess fileAccess)
+    private static void handlePutRequest(ObjectOutputStream objOut, Message msg)
     {
         /** write file and hash to disk **/
         IO.writeFile(msg.getData(), msg.getPath().getFileName());
         IO.writeFile(msg.getHash(), msg.getPath().getFileName()+".sha256");
-        fileAccess.updateAccess(msg.getPath().getFileName(), cert); // add file access for this client (since as required, the server
-        System.out.println("Access table updated");
         /** send success notice **/                                 // only stores file under its directory, filename can be used as path
         Message rsp = new Message(Message.SUCCESS_RSP, "Transfer of "+msg.getPath().getFileName()+" complete");
         try {
