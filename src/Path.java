@@ -26,13 +26,20 @@ public class Path implements Serializable
      */
     public Path(String path, boolean doCheckPath) throws IllegalFilePathException
     {
+        /** accommodate ./ as beginning of relative path **/
+        if (path.startsWith("./"))
+            path = path.substring(2, path.length());
+
         String fullPath;
         if (doCheckPath && !path.startsWith("/")) { // relative path, make it absolute
             String prefix = this.getClass().getClassLoader().getResource("").getPath(); // get path prefix
             fullPath = prefix + path;
+            System.out.println(fullPath);
         } else if (!doCheckPath)
             fullPath = path;
-        else // relative path can't start with /
+        else if (doCheckPath && path.startsWith("/")) { // absolute path
+            fullPath = path;
+        } else // relative path can't start with /
             throw new IllegalFilePathException();
 
         /** check if path is valid (good path + file exists) input **/
